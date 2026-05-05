@@ -1,0 +1,24 @@
+name: Build Kernel
+
+permissions:
+  contents: write
+  actions: write
+
+on:
+  workflow_call:
+
+jobs:
+  # Samsung
+  build-samsung-a71-oneui-a16-resukisu:
+    name: "Samsung Galaxy A71 (OneUI A16) (ReSukiSU)"
+    strategy:
+      fail-fast: true
+    uses: ./.github/workflows/build-samsung-a71-oneui-a16-resukisu.yml
+    secrets: inherit
+
+  build-samsung-a71-aosp-a16-resukisu:
+    name: "Samsung Galaxy A71 (AOSP A16) (ReSukiSU)"
+    strategy:
+      fail-fast: true
+    uses: ./.github/workflows/build-samsung-a71-aosp-a16-resukisu.yml
+    secrets: inherit
