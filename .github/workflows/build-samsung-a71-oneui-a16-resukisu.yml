@@ -43,8 +43,8 @@ env:
 
   BOOT_SOURCE : ""
 
-  NEED_DTBO : true
-  NEED_SAFE_DTBO : true
+  NEED_DTBO : false
+  NEED_SAFE_DTBO : false
 
   ROM_TEXT : "oneui_a16"
 
@@ -59,7 +59,7 @@ env:
   PATCHES_SOURCE: "JackA1ltman/NonGKI_Kernel_Patches" # [your_name]/[your_patch] -> gooder123/NonGKI_Patcher
   PATCHES_BRANCH: "samsung_kernel" # [your_branch] -> main
 
-  SUSFS_FOLDER_FIXED: "a71_sm7150/resukisu" # Fill in your patch prefix directory here. Leave it blank if there isn't one. -> your_folder
+  SUSFS_FOLDER_FIXED: "a71_sm7150/resukisu/OneUI" # Fill in your patch prefix directory here. Leave it blank if there isn't one. -> your_folder
   SUSFS_PATCH_FIXED: "susfs_fixed" # Fill in your patches here. If there are multiple patches, please separate them with a comma. Leave it blank if there isn't one. -> patch1,patch2
 
   REKERNEL_ENABLE: "true" # if u need Re:Kernel.
@@ -144,30 +144,6 @@ jobs:
 
       - name: 🚀 Build Process
         uses: ./.github/workflows/build-process
-
-      - name: 🔍 Verify and Create DTBO Image
-        run: |
-          cd $GITHUB_WORKSPACE/device_kernel
-
-          echo "🔍 Searching for .dtbo files..."
-          # THÊM lệnh find vào đây
-          DTBO_FILES=$(find out/arch/arm64/boot/dts/samsung/ -name "sm*150-sec-a71-eur-overlay-*.dtbo")
-
-          if [ -z "$DTBO_FILES" ]; then
-            echo "❌ No .dtbo files found! Check your build log for dtbs errors."
-            exit 1
-          fi
-
-          echo "📦 Creating dtbo.img..."
-          ./tools/mkdtimg create out/arch/arm64/boot/dtbo.img --page_size=4096 ${DTBO_FILES}
-
-          if [ -f "out/arch/arm64/boot/dtbo.img" ]; then
-            echo "✅ DTBO created successfully at out/arch/arm64/boot/dtbo.img"
-          else
-            echo "❌ DTBO creation failed! Listing files for debug:"
-            find out/ -name "*.img"
-            exit 1
-          fi
 
       - name: 🔩 Pack Process
         uses: ./.github/workflows/pack-process
