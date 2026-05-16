@@ -12,8 +12,8 @@ env:
   CUSTOM_CMDS : "CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-linux-gnu-"
   EXTRA_CMDS : "LLVM=1 LLVM_IAS=1 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip READELF=llvm-readelf HOSTCC=clang HOSTCXX=clang++"
 
-  KERNEL_SOURCE : "https://github.com/nduykha/kernel_samsung_sm7150.git"
-  KERNEL_BRANCH : "paradigm"
+  KERNEL_SOURCE : "https://github.com/SAM-715-ID/kernel_Bekicot.git"
+  KERNEL_BRANCH : "pri"
 
   CLANG_SOURCE : "https://github.com/nduykha/kernel_samsung_sm7150/releases/download/clang/llvm.tar.xz"
   CLANG_BRANCH : ""
